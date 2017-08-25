@@ -35,6 +35,15 @@ def update()
   SqlRunner.run(sql, values)
 end
 
+def pets()
+  sql = "
+    SELECT * FROM pets
+    WHERE owner_id = $1;"
+  pet_hashes = SqlRunner.run(sql, [@id])
+  pets = pet_hashes.map { |pet_hash| Pet.new(pet_hash) }
+  return pets
+end
+
 def self.map_items(owner_data)
   return owner_data.map { |owner| Owner.new(owner) }
 end

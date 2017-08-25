@@ -1,10 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="/styles.css">
     <meta charset="utf-8">
     <title>Animal Shelter</title>
   </head>
   <body>
+    <div class="top-bar">
+
+    <img class="logo" src="/Shelter_Logo-color.png" alt="">
+    <nav>
+      <ul>
+        <li><a href="/owners">View Owners</a></li>
+        <li><a href="/pets">View Pets</a></li>
+      </ul>
+    </nav>
+    </div>
+    <div class="main">
+
+
     <%= yield %>
+    </div>
   </body>
 </html>

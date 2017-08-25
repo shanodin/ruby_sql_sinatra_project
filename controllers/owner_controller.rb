@@ -13,3 +13,41 @@ get '/owners' do
   @owners = Owner.all
   erb(:"owners/index")
 end
+
+######## new owner form
+get '/owners/new' do
+  erb(:"owners/new")
+end
+
+#### add new owner to database
+post "/owners" do
+  @owner = Owner.new(params)
+  @owner.save
+  redirect to "/owners"
+end
+
+##### view individual owner
+get "/owners/:id" do
+  @owner = Owner.find(params[:id])
+  @pets = @owner.pets
+  erb(:"owners/show")
+end
+
+##### delete owner
+post '/owners/:id/delete' do
+  @owner = Owner.find(params[:id])
+  @owner.delete
+  redirect to '/owners'
+end
+
+##### give update owner form
+get'/owners/:id/edit' do
+  @owner = Owner.find(params[:id])
+  erb(:"owners/update")
+end
+
+#### submit update owner form details
+post '/owners/:id' do
+  @owner = Owner.new(params)
+  redirect to "/owners/#{@owner.id}"
+end
