@@ -8,8 +8,8 @@ require_relative("../models/pet.rb")
 require_relative("../models/sql_runner.rb")
 
 
-######## show all owners
-get '/owners' do
-  @owners = Owner.all
-  erb(:"owners/index")
+######## show all pets
+get '/pets' do
+  @pets = Pet.all
+  erb(:"pets/index")
 end

@@ -1,5 +1,5 @@
 require_relative("sql_runner")
-require_relative("animal")
+require_relative("pet")
 
 class Owner
 

@@ -1,6 +1,6 @@
 require( "pg" )
 require_relative("owner")
-require_relative("animal")
+require_relative("pet")
 
 class SqlRunner
 
