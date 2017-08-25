@@ -7,7 +7,7 @@ class Owner
   attr_reader :id
 
 def initialize( options )
-  @id = options['id'].to_i if options['id']
+  @id = options['id'].to_i
   @name = options['name']
   @phone_number = options['phone_number']
 end
@@ -65,10 +65,13 @@ def self.delete_all()
 end
 
 def self.find(id)
+  puts "Id #{id}"
   sql = "SELECT * FROM owners
     WHERE id = $1;"
   result = SqlRunner.run(sql, [id]).first
-  return Owner.new(result)
+  puts "Result #{result}"
+  owner = Owner.new(result)
+  return owner
 end
 
 

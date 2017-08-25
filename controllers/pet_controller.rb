@@ -30,7 +30,12 @@ end
 get "/pets/:id" do
   @pet = Pet.find(params[:id])
   owner_id = @pet.owner_id
-  @owner = Owner.find(owner_id)
+  if owner_id
+    @owner = Owner.find(owner_id)
+  else
+    @owner = false
+  end
+  erb(:"pets/show")
 end
 
 ##### delete pet

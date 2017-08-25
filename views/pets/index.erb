@@ -1,5 +1,7 @@
 <h1>Pets</h1>
 
+<p><a href="/pets/new">Add a new pet</a></p>
+
 <table>
   <tr>
     <th>Name</th>
@@ -8,6 +10,7 @@
     <th>Can Adopt</th>
     <th>Status</th>
     <th>Admission Date</th>
+    <th>Details</th>
   </tr>
 <% for pet in @pets %>
   <tr>
@@ -17,6 +20,7 @@
     <td><%= pet.can_adopt %></td>
     <td><%= pet.status %></td>
     <td><%= pet.admission_date %></td>
+    <td> <a href="pets/<%= pet.id %>">Details</a></td>
   </tr>
 <% end %>
 </table>
