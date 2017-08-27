@@ -41,7 +41,7 @@ post '/owners/:id/delete' do
 end
 
 ##### give update owner form
-get'/owners/:id/edit' do
+post '/owners/:id/edit' do
   @owner = Owner.find(params[:id])
   erb(:"owners/update")
 end
@@ -49,5 +49,6 @@ end
 #### submit update owner form details
 post '/owners/:id' do
   @owner = Owner.new(params)
+  @owner.update
   redirect to "/owners/#{@owner.id}"
 end
