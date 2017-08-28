@@ -1,9 +1,11 @@
 require_relative("sql_runner")
 require_relative("owner")
+require_relative("adoption")
+
 
 class Pet
 
-attr_accessor :name, :type, :breed, :can_adopt, :status, :admission_date, :owner_id
+attr_accessor :name, :type, :breed, :can_adopt, :status, :admission_date, :photo
 attr_reader :id
 
   def initialize( options )
@@ -14,7 +16,7 @@ attr_reader :id
     @can_adopt = options['can_adopt']
     @status = options['status']
     @admission_date = options['admission_date']
-    @owner_id = options['owner_id']
+    @photo = options['photo']
   end
 
   def save()
@@ -25,11 +27,11 @@ attr_reader :id
       can_adopt,
       status,
       admission_date,
-      owner_id)
+      photo)
     VALUES
       ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;"
-    values = [@name, @type, @breed, @can_adopt, @status, @admission_date, @owner_id]
+    values = [@name, @type, @breed, @can_adopt, @status, @admission_date, @photo]
     results = SqlRunner.run(sql, values)
     @id = results.first()['id'].to_i
   end
@@ -42,11 +44,11 @@ attr_reader :id
       can_adopt,
       status,
       admission_date,
-      owner_id)
+      photo)
         =
       ($1, $2, $3, $4, $5, $6, $7)
     WHERE id = $8"
-    values = [@name, @type, @breed, @can_adopt, @status, @admission_date, @owner_id, @id]
+    values = [@name, @type, @breed, @can_adopt, @status, @admission_date, @photo, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -77,14 +79,22 @@ attr_reader :id
     return Pet.new(result)
   end
 
-  def owner
-    sql = "
-    SELECT * FROM owners
-    WHERE id = $1;"
-    results = SqlRunner.run( sql, [@owner_id] )
-    hash = results[0]
-    owner = Owner.new(hash)
-    return owner
+  # def owner
+  #   sql = "
+  #   SELECT * FROM owners
+  #   WHERE id = $1;"
+  #   results = SqlRunner.run( sql, [@owner_id] )
+  #   hash = results[0]
+  #   owner = Owner.new(hash)
+  #   return owner
+  # end
+
+  def adoption()
+    sql = "SELECT * FROM adoptions
+    WHERE pet_id = $1;"
+    result = SqlRunner.run(sql, [@id])
+    return Adoption.new(result.first)
   end
+
 
 end

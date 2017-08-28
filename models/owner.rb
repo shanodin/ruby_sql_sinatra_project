@@ -1,5 +1,6 @@
 require_relative("sql_runner")
 require_relative("pet")
+require_relative("adoption")
 
 class Owner
 

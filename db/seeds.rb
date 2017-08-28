@@ -1,5 +1,6 @@
 require_relative( '../models/owner.rb' )
 require_relative( '../models/pet.rb' )
+require_relative( '../models/adoption.rb' )
 require('pry-byebug')
 
 owner1 = Owner.new({
@@ -32,18 +33,19 @@ pet1 = Pet.new({
   'breed' => 'moggie',
   'can_adopt' => true,
   'status' => 'Ready for Adoption',
-  'admission_date' => '25/08/2017'
+  'admission_date' => '25/08/2017',
+  'photo' => 'zeus.jpg'
   })
 pet1.save
 
 pet2 = Pet.new({
-  'name' => 'Bob',
+  'name' => 'Reilly',
   'type' => :dog,
-  'breed' => 'Labrador x Pointer',
+  'breed' => 'Spaniel',
   'can_adopt' => false,
   'status' => 'Adopted',
   'admission_date' => '25/08/2017',
-  'owner_id' => owner1.id
+  'photo' => 'reilly.jpg'
   })
 pet2.save
 
@@ -53,6 +55,13 @@ pet3 = Pet.new({
   'breed' => 'Bearded Dragon',
   'can_adopt' => false,
   'status' => 'At the Vet',
-  'admission_date' => '25/08/2017'
+  'admission_date' => '25/08/2017',
+  'photo' => 'puppy.jpg'
   })
-  pet3.save
+pet3.save
+
+adoption1 = Adoption.new({
+  'owner_id' => owner1.id,
+  'pet_id' => pet2.id
+  })
+adoption1.save()

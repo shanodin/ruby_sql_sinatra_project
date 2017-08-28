@@ -12,7 +12,7 @@
   <p>Owner: <a href="/owners/<%= @owner.id %>"><%= @owner.name %></a></p>
 <% else %>
  <p>
-    None yet - Could it be you?
+    Owner: None yet - Could it be you?
  </p>
 <% end %>
 <form action="/pets/<%= @pet.id %>/delete" method="post">

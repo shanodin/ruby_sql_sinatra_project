@@ -1,0 +1,16 @@
+<h1>Happy Animals and Owners</h1>
+
+<table>
+  <tr>
+    <th>Pet Name</th>
+    <th>Pet Type</th>
+    <th>Owner Name</th>
+  </tr>
+<% for adoption in @adoptions %>
+  <tr>
+    <td><%= adoption.pet.name %></td>
+    <td><%= adoption.pet.type %></td>
+    <td><%= adoption.owner.name %></td>
+  </tr>
+<% end %>
+</table>

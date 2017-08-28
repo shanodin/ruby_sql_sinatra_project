@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS adoptions;
 DROP TABLE IF EXISTS owners;
 DROP TABLE IF EXISTS pets;
 
@@ -14,6 +15,12 @@ CREATE TABLE pets(
   breed VARCHAR(255),
   can_adopt BOOLEAN,
   status VARCHAR(255),
+  admission_date VARCHAR(255),
+  photo VARCHAR(255)
+);
+
+CREATE TABLE adoptions(
+  id SERIAL PRIMARY KEY,
   owner_id INT REFERENCES owners(id),
-  admission_date VARCHAR(255)
+  pet_id INT REFERENCES pets(id)
 );

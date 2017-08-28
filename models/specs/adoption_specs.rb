@@ -1,11 +1,9 @@
-require_relative( '../pet.rb' )
-require_relative( '../owner.rb' )
 require_relative( '../adoption.rb' )
 require('pry-byebug')
 require("pry")
 require('minitest/autorun')
 
-class PetTest < MiniTest::Test
+class AdoptionTest < MiniTest::Test
 
   def setup
 
@@ -34,17 +32,16 @@ class PetTest < MiniTest::Test
   end
 
   def test_pet_name
-    assert_equal('Reilly', @pet1.name)
+    pet = @adoption1.pet
+    name = pet.name
+    assert_equal('Reilly', name)
   end
 
-  def test_pet_status
-    assert_equal('Adopted', @pet1.status)
-  end
-
-  def test_owner_name
-    adoption = @pet1.adoption
-    name = adoption.owner.name
+  def test_owner
+    owner = @adoption1.owner
+    name = owner.name
     assert_equal('Matthew Addison', name)
   end
+
 
 end

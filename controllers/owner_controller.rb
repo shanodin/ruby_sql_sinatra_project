@@ -1,6 +1,5 @@
 require('sinatra')
 require('sinatra/contrib/all')
-require("sinatra/reloader") if development?
 require('pry-byebug')
 require("pry")
 require_relative("../models/owner.rb")

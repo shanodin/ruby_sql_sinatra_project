@@ -29,12 +29,12 @@ end
 ###### view individual pet
 get "/pets/:id" do
   @pet = Pet.find(params[:id])
-  owner_id = @pet.owner_id
-  if owner_id
-    @owner = Owner.find(owner_id)
-  else
-    @owner = false
-  end
+  # owner_id = @pet.owner_id
+  # if owner_id
+  #   @owner = Owner.find(owner_id)
+  # else
+  #   @owner = false
+  # end
   erb(:"pets/show")
 end
 
@@ -46,7 +46,7 @@ post 'pets/:id/delete' do
 end
 
 #### give update pet form
-get 'pets/:id/edit' do
+post '/pets/:id/edit' do
   @pet = Pet.find(params[:id])
   erb(:"pets/update")
 end
@@ -54,5 +54,6 @@ end
 #### submit pet update form
 post '/pets/:id' do
   @pet = Pet.new(params)
+  @pet.update
   redirect to "/pets/#{@pet.id}"
 end
