@@ -1,4 +1,5 @@
 require_relative( '../owner.rb' )
+require_relative( '../adoption.rb' )
 require('pry-byebug')
 require("pry")
 require('minitest/autorun')
@@ -13,20 +14,36 @@ class OwnerTest < MiniTest::Test
       })
     @owner1.save()
 
-    @owner2 = Owner.new({
-      'name' => 'Alice Rees',
-      'phone_number' => '01987 654321'
+    @pet1 = Pet.new({
+      'name' => 'Reilly',
+      'type' => :dog,
+      'breed' => 'Spaniel',
+      'can_adopt' => false,
+      'status' => 'Adopted',
+      'admission_date' => '25/08/2017'
       })
-    @owner2.save()
+    @pet1.save
+
+    @adoption1 = Adoption.new({
+      'owner_id' => @owner1.id,
+      'pet_id' => @pet1.id
+      })
+    @adoption1.save()
 
   end
 
   def test_owner_name
-    assert_equal('Alice Rees', @owner2.name)
+    assert_equal('Matthew Addison', @owner1.name)
   end
 
   def test_owner_phone_number
     assert_equal('01234 567890', @owner1.phone_number)
   end
+
+  def test_pet_name
+    adoption = @owner1.adoption
+    assert_equal('Reilly', adoption.pet.name)
+  end
+
 
 end

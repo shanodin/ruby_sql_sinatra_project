@@ -4,12 +4,14 @@
   <tr>
     <th>Pet Name</th>
     <th>Pet Type</th>
+    <th>Pet Photo</th>
     <th>Owner Name</th>
   </tr>
 <% for adoption in @adoptions %>
   <tr>
     <td><%= adoption.pet.name %></td>
     <td><%= adoption.pet.type %></td>
+    <td><img src="/<%= adoption.pet.photo %>" height="300px" width="300px" ></td>
     <td><%= adoption.owner.name %></td>
   </tr>
 <% end %>

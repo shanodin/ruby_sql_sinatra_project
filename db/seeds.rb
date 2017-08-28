@@ -65,3 +65,9 @@ adoption1 = Adoption.new({
   'pet_id' => pet2.id
   })
 adoption1.save()
+
+adoption2 = Adoption.new({
+  'owner_id' => owner1.id,
+  'pet_id' => pet3.id
+  })
+adoption2.save()

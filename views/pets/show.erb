@@ -8,8 +8,8 @@
 <p>Ready for Adoption?: <%= @pet.can_adopt %></p>
 <p>Admission Date: <%= @pet.admission_date %></p>
 
-<% if @owner %>
-  <p>Owner: <a href="/owners/<%= @owner.id %>"><%= @owner.name %></a></p>
+<% if @pet.adoption %>
+  <p>Owner: <a href="/owners/<%= @pet.adoption.owner.id %>"><%= @pet.adoption.owner.name %></a></p>
 <% else %>
  <p>
     Owner: None yet - Could it be you?

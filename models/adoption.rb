@@ -39,20 +39,6 @@ class Adoption
     return results.map { |adoption| Adoption.new(adoption) }
   end
 
-  def owner()
-    sql = "SELECT * FROM owners
-    WHERE id = $1"
-    results = SqlRunner.run( sql, [@owner_id] )
-    return Owner.new( results.first )
-  end
-
-  def pets()
-    sql = "SELECT * FROM pets
-    WHERE id = $1;"
-    results = SqlRunner.run( sql, [@pet_id] )
-    return Pet.new( results.first )
-  end
-
   def self.delete_all()
     sql = "DELETE FROM adoptions"
     SqlRunner.run( sql, [] )
@@ -80,9 +66,9 @@ class Adoption
 
   def owner()
     sql = "SELECT * FROM owners
-      WHERE id = $1;"
-    result = SqlRunner.run(sql, [@owner_id])
-    return Owner.new(result.first)
+    WHERE id = $1"
+    results = SqlRunner.run( sql, [@owner_id] )
+    return Owner.new( results.first )
   end
 
 end

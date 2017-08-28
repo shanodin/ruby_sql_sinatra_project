@@ -79,22 +79,12 @@ attr_reader :id
     return Pet.new(result)
   end
 
-  # def owner
-  #   sql = "
-  #   SELECT * FROM owners
-  #   WHERE id = $1;"
-  #   results = SqlRunner.run( sql, [@owner_id] )
-  #   hash = results[0]
-  #   owner = Owner.new(hash)
-  #   return owner
-  # end
-
-  def adoption()
-    sql = "SELECT * FROM adoptions
-    WHERE pet_id = $1;"
+  def owner()
+    sql = "SELECT owners.* FROM owners
+      INNER JOIN adoptions ON adoptions.owner_id = owners.id
+      WHERE adoptions.pet_id = $1"
     result = SqlRunner.run(sql, [@id])
-    return Adoption.new(result.first)
+    return result.map { |row| Owner.new(row) }
   end
-
 
 end

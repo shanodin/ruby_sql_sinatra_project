@@ -3,6 +3,7 @@ require('sinatra/contrib/all')
 require('pry-byebug')
 require("pry")
 require_relative("../models/owner.rb")
+require_relative("../models/adoption.rb")
 require_relative("../models/pet.rb")
 require_relative("../models/sql_runner.rb")
 
@@ -28,7 +29,7 @@ end
 ##### view individual owner
 get "/owners/:id" do
   @owner = Owner.find(params[:id])
-  @pets = @owner.pets
+  @pets = @owner.pets()
   erb(:"owners/show")
 end
 
