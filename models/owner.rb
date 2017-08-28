@@ -57,12 +57,10 @@ class Owner
   end
 
   def self.find(id)
-    puts "Id #{id}"
     sql = "SELECT * FROM owners
       WHERE id = $1;"
-    result = SqlRunner.run(sql, [id]).first
-    puts "Result #{result}"
-    owner = Owner.new(result)
+    result = SqlRunner.run(sql, [id])
+    owner = Owner.new(result.first)
     return owner
   end
 

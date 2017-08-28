@@ -1,9 +1,9 @@
 require("sinatra")
 require("sinatra/contrib/all")
 require("pry")
-require("pry-byebug")
 require_relative("../models/owner.rb")
 require_relative("../models/pet.rb")
+require_relative("../models/adoption.rb")
 require_relative("../models/sql_runner.rb")
 
 ###### show all adoptions
@@ -13,11 +13,11 @@ get "/adoptions" do
 end
 
 ###### show individual adoption
-get "/adoptions/:id" do
-  @owner = Owner.find(params[:id])
-  @pet = Pet.find(params[:id])
-  erb(:"adoptions/show")
-end
+# get "/adoptions/:id" do
+#   @owner = Owner.find(params[:id])
+#   @pet = Pet.find(params[:id])
+#   erb(:"adoptions/show")
+# end
 
 ###### new adoption form :)
 get "/adoptions/new" do
